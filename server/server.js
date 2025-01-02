@@ -54,6 +54,11 @@ app.use('/users', routes);
 // I had to place this under the routes setup so that I can see my get request via Postman, not the html file
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Explicitly serving the 'index.html' at the root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 /**
  * 404 Handler
  * Catch all unmatched routes and return a 404 error
