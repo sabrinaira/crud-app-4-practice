@@ -64,5 +64,6 @@ root
 
 #### Other Notes
 
-- Don't forget to create your own `.env` file! It has already been added to `.gitignore` list.
+- Don't forget to create your own `.env` file! It has already been added to `.gitignore` list. You can simply create it at the root of your app using `touch .env` on your terminal.
+- The `.env.example` has already been provided, which just shows the variables you can place it onto your own `.env` file, including your MongoDB connection string. Assuming you have a database created for this practice, you can refer the specific database onto your connection string.
 - Disclaimer: This is just how I would personally set up my own CRUD app! Please send feedback me if you have questions!
