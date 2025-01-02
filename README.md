@@ -7,7 +7,7 @@
 - [Vanilla JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - We'll be using vanilla JS to set up our frontend using DOM manipulation.
 
 # Instructions
-#### (Updated `January 1, 2025`)
+#### (Updated `January 2, 2025`)
 
 You can fork this repository and play around with this on your own!
 
