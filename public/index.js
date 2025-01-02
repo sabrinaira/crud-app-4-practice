@@ -44,15 +44,9 @@ const button = document.createElement('button');
 button.type = 'button';
 button.textContent = 'Submit';
 
-// Button Event Listener
-button.addEventListener('click', () => {
-  console.log(
-    `First Name: ${fName.value}, Last Name: ${lName.value}, Age: ${ageField.value}, Color: ${colorField.value}`
-  );
-  submit({ firstName, lastName, age, color });
-});
+/** FETCH REQUESTS */
 
-// POST Request
+/** POST REQUEST */
 const submit = async (formData) => {
   try {
     const response = await fetch('http://localhost:5001/users/', {
@@ -60,9 +54,11 @@ const submit = async (formData) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
+
     if (!response.ok) {
       throw new Error('Error submitting data form');
     }
+
     const data = await response.json();
     console.log('Data submitted:', data);
   } catch (err) {
@@ -70,11 +66,31 @@ const submit = async (formData) => {
   }
 };
 
+/** GET REQUEST */
 const display = async (params) => {};
 
+/** PATCH REQUEST */
 const update = async (params) => {};
 
+/** DELETE REQUEST */
 const remove = async (params) => {};
+
+// Button Event Listener
+button.addEventListener('click', () => {
+  // Need to input the values from the input fields in order to pass down to the 'submit' function
+  const formData = {
+    firstName: fName.value,
+    lastName: lName.value,
+    age: parseInt(ageField.value, 10),
+    color: colorField.value,
+  };
+
+  console.log(
+    `First Name: ${fName.value}, Last Name: ${lName.value}, Age: ${ageField.value}, Color: ${colorField.value}`
+  );
+
+  submit(formData);
+});
 
 form.append(
   'First Name:',
