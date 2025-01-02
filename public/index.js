@@ -40,12 +40,34 @@ colorField.setAttribute('id', 'color');
 colorField.setAttribute('type', 'text');
 colorField.placeholder = 'Color';
 
+const button = document.createElement('button');
+button.type = 'button';
+button.textContent = 'Submit';
+
+button.addEventListener('click', () => {
+  console.log(
+    `First Name: ${fName.value}, Last Name: ${lName.value}, Age: ${ageField.value}, Color: ${colorField.value}`
+  );
+});
+
+const submit = () => {
+  fetch('http://localhost:5001/users/')
+    .then(() => {})
+    .catch(() => {});
+};
+
 form.append(
+  'First Name:',
   fName,
   document.createElement('br'),
+  'Last Name:',
   lName,
   document.createElement('br'),
+  'Age:',
   ageField,
   document.createElement('br'),
-  colorField
+  'Color:',
+  colorField,
+  document.createElement('br'),
+  button
 );
