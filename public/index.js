@@ -44,17 +44,37 @@ const button = document.createElement('button');
 button.type = 'button';
 button.textContent = 'Submit';
 
+// Button Event Listener
 button.addEventListener('click', () => {
   console.log(
     `First Name: ${fName.value}, Last Name: ${lName.value}, Age: ${ageField.value}, Color: ${colorField.value}`
   );
+  submit({ firstName, lastName, age, color });
 });
 
-const submit = () => {
-  fetch('http://localhost:5001/users/')
-    .then(() => {})
-    .catch(() => {});
+// POST Request
+const submit = async (formData) => {
+  try {
+    const response = await fetch('http://localhost:5001/users/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+    if (!response.ok) {
+      throw new Error('Error submitting data form');
+    }
+    const data = await response.json();
+    console.log('Data submitted:', data);
+  } catch (err) {
+    console.error('Submission failed:', err.message);
+  }
 };
+
+const display = async (params) => {};
+
+const update = async (params) => {};
+
+const remove = async (params) => {};
 
 form.append(
   'First Name:',
