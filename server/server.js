@@ -26,9 +26,6 @@ app.use(express.json());
 // Enable CORS to allow cross-origin resource sharing
 app.use(cors());
 
-// Serve static files (e.g., HTML, CSS, JS) from the "public" folder
-app.use(express.static(path.join(__dirname, 'public')));
-
 /**
  * MongoDB connection setup
  *
@@ -51,7 +48,11 @@ mongoose
  * Routes setup
  */
 // Use imported routes for handling API endpoints
-app.use('/', routes);
+app.use('/users', routes);
+
+// Serve static files (e.g., HTML, CSS, JS) from the "public" folder
+// I had to place this under the routes setup so that I can see my get request via Postman, not the html file
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * 404 Handler
