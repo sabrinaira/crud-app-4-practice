@@ -23,7 +23,10 @@ const app = express(); // Initialize the Express app
 // Middleware for parsing incoming JSON request bodies
 app.use(express.json());
 
-// Enable CORS to allow cross-origin resource sharing
+/**
+ * Enable CORS to allow cross-origin resource sharing
+ * https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+ * */
 app.use(cors());
 
 /**

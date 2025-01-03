@@ -4,27 +4,25 @@ import Model from '../models/model.js';
 const router = express.Router();
 
 // CREATE method
-router.post('/', (req, res) => {
-  const { firstName, lastName, age, color } = req.body;
-  console.log('Request Body:', req.body);
+router.post('/', async (req, res) => {
+  try {
+    const { firstName, lastName, age, color } = req.body;
+    console.log('Request Body:', req.body);
 
-  Model.create({ firstName, lastName, age, color })
-    .then((data) => {
-      console.log('Data successfully added', data);
-      return res.status(200).json(data);
-    })
-    .catch((err) => {
-      return res
-        .status(500)
-        .json({ message: 'Error adding data to database.' });
-    });
+    const data = await Model.create({ firstName, lastName, age, color });
+    console.log('Data successfully added', data);
+    return res.status(200).json(data);
+  } catch (err) {
+    console.error('Error adding data to database:', err);
+    return res.status(500).json({ message: 'Error adding data to database.' });
+  }
 });
 
 // READ method
-// using Async/ Await format
 router.get('/', async (req, res) => {
   try {
     const data = await Model.find();
+    console.log(`Retrieved from database: ${data}`);
     return res.status(200).json(data); // Use `.json()` for sending JSON data
   } catch (err) {
     console.error('Error retrieving data:', err); // Log the error for debugging
@@ -33,38 +31,38 @@ router.get('/', async (req, res) => {
 });
 
 // UPDATE method
-router.patch('/:id', (req, res) => {
-  const { id } = req.params;
-  const { firstName, lastName, age, color } = req.body;
+router.patch('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { firstName, lastName, age, color } = req.body;
 
-  Model.findByIdAndUpdate(
-    { _id: id },
-    { firstName, lastName, age, color },
-    { new: true }
-  )
-    .then((data) => {
-      console.log('Data updated successfully:', data);
-      return res.status(200).json({message: `Data successfully updated: ${data}`});
-    })
-    .catch((err) => {
-      return res.status(500).json({ message: 'Error updating data.' });
-    });
+    const data = await Model.findByIdAndUpdate(
+      { _id: id },
+      { firstName, lastName, age, color },
+      { new: true }
+    );
+    console.log('Data updated successfully:', data);
+    return res.status(200).json(data);
+  } catch (err) {
+    console.error('Error updating data:', err);
+    return res.status(500).json({ message: 'Error updating data.' });
+  }
 });
 
 // DELETE method
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
 
-  Model.findByIdAndDelete({ _id: id })
-    .then((data) => {
-      console.log('Data deleted:', data);
-      return res.status(200).json({ message: 'Data successfully deleted!' });
-    })
-    .catch((err) => {
-      return res
-        .status(500)
-        .json({ message: 'Error deleting data from database.' });
-    });
+    const data = await Model.findByIdAndDelete({ _id: id });
+    console.log('Data deleted:', data);
+    return res.status(200).json({ message: 'Data successfully deleted!' });
+  } catch (err) {
+    console.error('Error deleting data to database:', err);
+    return res
+      .status(500)
+      .json({ message: 'Error deleting data from database.' });
+  }
 });
 
 export default router;
