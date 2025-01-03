@@ -9,7 +9,7 @@
 
 # Instructions
 
-#### (Updated `January 2, 2025`)
+#### (Updated `January 3, 2025`)
 
 You can fork this repository and play around with this on your own!
 
@@ -37,8 +37,8 @@ But for making a simple CRUD app using a single database model and router file, 
 <pre>
 root
 ├── public/
-│   └── crud.js
 │   └── index.html
+│   └── requests.js
 │   └── index.js
 ├── server/
 │   ├── controllers/

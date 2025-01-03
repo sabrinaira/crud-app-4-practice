@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /** -- The Form Section  -- */
 
   const form = document.createElement('form');
-  form.setAttribute('id', 'crudForm');
+  form.setAttribute('id', 'myForm');
   body.appendChild(form);
 
   const fName = document.createElement('input');
@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return true; // Return true if validation passes
   };
 
+  /** This is for the edit button to allow editing existing data */
   const openEditForm = (user) => {
     // Clear previous form if exists
     let editForm = document.querySelector('#editForm');
