@@ -1,4 +1,4 @@
-import { submit, display, update, remove } from './crud.js';
+import { submit, display, update, remove } from './requests.js';
 
 /**
  * The document.addEventListener function and 'DOMContentLoaded' ensures that the all code will be executed once the DOM is fully loaded.
