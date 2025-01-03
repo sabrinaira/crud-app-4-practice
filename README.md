@@ -37,6 +37,7 @@ But for making a simple CRUD app using a single database model and router file, 
 <pre>
 root
 ├── public/
+│   └── crud.js
 │   └── index.html
 │   └── index.js
 ├── server/
