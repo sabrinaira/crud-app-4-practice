@@ -67,8 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (fName.value === '' || lName.value === '') {
       text = 'Name fields are required.';
-    } else if (typeof ageField.value !== 'number') {
-      text = 'Age field input is invalid.';
+    } else if (isNaN(ageField.value) && ageField.value) {
+      // Validate age only if it's provided
+      text = 'Age field input is invalid. Please enter a valid number.';
     }
 
     if (text) {
